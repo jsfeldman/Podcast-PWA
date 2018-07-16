@@ -1,0 +1,21 @@
+.top-app-bar {
+  position: fixed;
+  background-color: white;
+  width: 100%;
+}
+.top-app-bar__row {
+  height: 56px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: min-content minmax(180px, auto) min-content;
+  align-items: center;
+  box-sizing: border-box;
+}
+.top-app-bar__navigation-icon {
+  margin-right: 32px;
+}
+.mdc-top-app-bar__title {
+}
+.top-app-bar__action-item + .top-app-bar__action-item {
+  margin-left: 24px;
+}
