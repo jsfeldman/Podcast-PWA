@@ -1,4 +1,2 @@
 export default () => `
-  </body>
-</html>
 `
