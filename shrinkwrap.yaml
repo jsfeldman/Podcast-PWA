@@ -1,7 +1,15 @@
 dependencies:
   koa: 2.5.2
   koa-static: 5.0.0
+  matchit: 1.0.6
+  xml2js: 0.4.19
 packages:
+  /@arr/every/1.0.0:
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-MU+BaPUK5IoDLP2tX9tDb0ZKl6w=
   /accepts/1.3.5:
     dependencies:
       mime-types: 2.1.18
@@ -204,6 +212,14 @@ packages:
       node: ^4.8.4 || ^6.10.1 || ^7.10.1 || >= 8.1.4
     resolution:
       integrity: sha512-MoVGWre9g3p35pCqXNhOT/a4trwK5CGvalIoPi7qOA2RCZaep3GCsa/G/tD9QMjQI7bmVWn3XF3SOau8RkPh6w==
+  /matchit/1.0.6:
+    dependencies:
+      '@arr/every': 1.0.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha1-gl2gZGi9Mk8CGevijhKkG/tVJMQ=
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -281,6 +297,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-xL2p9e+y/OZSR4c6s2u02DT+Fvc=
+  /sax/1.2.4:
+    dev: false
+    resolution:
+      integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
   /setprototypeof/1.1.0:
     dev: false
     resolution:
@@ -320,6 +340,19 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+  /xml2js/0.4.19:
+    dependencies:
+      sax: 1.2.4
+      xmlbuilder: 9.0.7
+    dev: false
+    resolution:
+      integrity: sha512-esZnJZJOiJR9wWKMyuvSE1y6Dq5LCuJanqhxslH2bxM6duahNZ+HMpCLhBQGZkbX6xRf8x1Y2eJlgt2q3qo49Q==
+  /xmlbuilder/9.0.7:
+    dev: false
+    engines:
+      node: '>=4.0'
+    resolution:
+      integrity: sha1-Ey7mPS7FVlxVfiD0wi35rKaGsQ0=
   /ylru/1.2.1:
     dev: false
     engines:
@@ -332,3 +365,5 @@ shrinkwrapVersion: 3
 specifiers:
   koa: ^2.5.2
   koa-static: 5.0.0
+  matchit: 1.0.6
+  xml2js: 0.4.19

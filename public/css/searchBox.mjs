@@ -1,3 +1,4 @@
+export default () => `
 .search-box {
   height: 32px;
   display: flex;
@@ -6,13 +7,18 @@
 }
 .search-box__input {
   background-color: transparent;
-  border: 1px solid darkgrey;
+  border: 1px solid lightgrey;
   padding: 8px;
   min-width: 180px;
   width: 600px;
   max-width: 80%;
 }
+.search-box__input::placeholder {
+  color: lightgrey;
+}
 .search-box__button{
   background-color: transparent;
   border: 1px solid darkgrey;
+  color: lightgrey;
 }
+`
