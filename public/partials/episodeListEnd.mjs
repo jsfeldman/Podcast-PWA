@@ -1,3 +1,4 @@
 export default () => `
-</ul>
-`
+  </ul>
+</div>
+`;

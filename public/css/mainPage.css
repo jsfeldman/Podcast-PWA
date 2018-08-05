@@ -1,5 +1,8 @@
 .main-page {
-  background-color: #f0f0f5;
+  background-color: #282828;
   margin-top: 56px;
   padding: 16px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: white;
 }

@@ -1,4 +1,4 @@
-export default () => `
+export default `
 .search-box {
   height: 32px;
   display: flex;
@@ -22,4 +22,4 @@ export default () => `
   border: 1px solid darkgrey;
   color: lightgrey;
 }
-`
+`;

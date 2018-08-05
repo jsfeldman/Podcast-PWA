@@ -1,0 +1,8 @@
+.title-with-list {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.episode-list {
+  list-style-type: none;
+  margin: 0;
+}
