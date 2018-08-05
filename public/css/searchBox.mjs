@@ -12,6 +12,7 @@ export default () => `
   min-width: 180px;
   width: 600px;
   max-width: 80%;
+  color: lightgrey;
 }
 .search-box__input::placeholder {
   color: lightgrey;
