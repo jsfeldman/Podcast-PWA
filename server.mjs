@@ -6,12 +6,10 @@ import koaStatic from "koa-static";
 import matchit from "matchit";
 import https from "https";
 
-import xmldom from "xmldom";
-
 import pageStart from "./public/partials/pageStart.mjs";
 import pageEnd from "./public/partials/pageEnd.mjs";
 
-import { parseRss } from "./public/utils.mjs";
+import parseRSS from "./public/utils/parseRSS.mjs";
 
 const app = new Koa();
 
@@ -30,11 +28,6 @@ app.use(ctx => {
     ctx.body = inStream;
   } else if (ctx.path === "/podcastList") {
     const searchTerm = ctx.query["searchTerm"];
-    /* const inStream = new Stream.Readable({
-      read (size) {
-
-      }
-    }) */
     ctx.type = "text/html";
     const passThrough = new Stream.PassThrough();
     ctx.body = passThrough;
@@ -43,11 +36,9 @@ app.use(ctx => {
     https.get(searchTerm, resp => {
       // A chunk of data has been recieved.
       let data = "";
-      const DOMParser = xmldom.DOMParser.bind(xmldom);
-      const itemParser = new DOMParser();
       resp.on("data", chunk => {
         data += chunk.toString();
-        const { html, end } = parseRss(data, itemParser);
+        const { html, end } = parseRSS(data);
         passThrough.write(html);
         data = data.substring(end);
       });
@@ -56,11 +47,16 @@ app.use(ctx => {
         passThrough.end();
       });
     });
+  } else if (ctx.path === "/pageStart") {
+    ctx.type = "text/html";
+    ctx.body = pageStart;
+  } else if (ctx.path === "/pageEnd") {
+    ctx.type = "text/html";
+    ctx.body = pageEnd;
   }
 });
 
 // listen for requests :)
-console.log(process.env.PORT);
-var listener = app.listen(process.env.PORT, function() {
+var listener = app.listen(process.env.PORT || 3000, function() {
   console.log("Your app is listening on port " + listener.address().port);
 });

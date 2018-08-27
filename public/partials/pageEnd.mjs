@@ -1,4 +1,4 @@
-import { templateWrapper } from "../utils.mjs";
+import templateWrapper from "../utils/templateWrapper.mjs";
 import searchBoxHtml from "../templates/searchBox.mjs";
 
 export default `

@@ -35,6 +35,6 @@ export default ({
         : ""
     }
   </div>
-  <audio class="episode-item__audio" controls src="${data}" type="${type}" crossorigin="anonymous"></audio>
+  <audio class="episode-item__audio" preload="none" controls src="${data}" type="${type}" crossorigin="anonymous"></audio>
 </li>
 `;

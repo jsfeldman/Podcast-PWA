@@ -1,6 +1,4 @@
-import { parseRss } from "/utils.mjs";
-
-export default class SearchBox extends HTMLElement {
+export default class TitleCard extends HTMLElement {
   constructor() {
     super();
     let template = document.getElementById("title-card-template");
