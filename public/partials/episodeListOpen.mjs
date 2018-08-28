@@ -1,8 +1,12 @@
-import titleCard from "../templates/titleCard.mjs";
+import titleCardHtml from "../templates/titleCard.mjs";
+import titleCardCss from "../css/titleCard.mjs";
 
 export default titleInfo => `
 <link href="/css/titleWithList.css" rel="stylesheet" />
 <div class="title-with-list">
-  ${titleCard(titleInfo)}
+  <style>
+    ${titleCardCss}
+  </style>
+  ${titleCardHtml(titleInfo)}
   <ul class="episode-list">
 `;

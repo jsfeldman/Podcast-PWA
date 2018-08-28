@@ -1,4 +1,7 @@
-import searchBox from "../templates/searchBox";
+import searchBoxHtml from "../templates/searchBox";
+import searchBoxCss from "../css/searchBox";
+
+import episodeItemCss from "../css/episodeItem";
 
 export default `
 <!doctype html>
@@ -20,10 +23,17 @@ export default `
       <section class="top-app-bar__row">
         <i class="material-icons top-app-bar__navigation-icon">menu</i>
         <div class="top-app-bar__title">
-          ${searchBox()}
+          <style>
+            ${searchBoxCss}
+          </style>
+          ${searchBoxHtml()}
         </div>
       </section>
     </header>
     <link href="/css/mainPage.css" rel="stylesheet">
     <main class="main-page">
+    <!-- Any better place to put this was confusing -->
+    <style>
+      ${episodeItemCss}
+    </style>
 `;

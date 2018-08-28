@@ -1,9 +1,9 @@
-import titleCardCss from "../css/titleCard.mjs";
-
-export default ({ title, description, coverImgSrc, link }) => `
-<style>
-  ${titleCardCss}
-</style>
+export default ({
+  title = "",
+  description = "",
+  coverImgSrc = "",
+  link = ""
+} = {}) => `
 <section class="title-card">
   <img class="title-card__image" src="${coverImgSrc}" alt="${title}'s cover art" crossorigin="anonymous" />
   <h2 class="title-card__heading">${title}</h2>

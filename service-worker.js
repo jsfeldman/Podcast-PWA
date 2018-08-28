@@ -53,15 +53,11 @@ self.addEventListener("fetch", event => {
         function pushStream(stream) {
           // Get a lock on the stream
           var reader = stream.getReader();
-          console.log("push stream start");
           return reader.read().then(function process(result) {
             if (result.done) {
-              console.count("finished with data");
-              console.log("finished enqueuing push stream");
               return;
             }
             controller.enqueue(result.value);
-            console.count("more data");
             // Read more & process
             return reader.read().then(process);
           });
@@ -73,12 +69,7 @@ self.addEventListener("fetch", event => {
           .then(resp => pushStream(resp.body))
           .then(() => pageEndFetch)
           .then(resp => pushStream(resp.body))
-          .then(
-            () => (
-              console.log("controller.close about to be called"),
-              controller.close()
-            )
-          );
+          .then(() => controller.close());
       }
     });
 
@@ -89,6 +80,8 @@ self.addEventListener("fetch", event => {
     );
   } else {
     // need to fix range header issue for those cors requests.
-    event.respondWith(fetch(event.request, { mode: "cors" }));
+    // And actually cache things
+    // Also actually handle the rest of fetch requests
+    // event.respondWith(fetch(event.request, { mode: "cors" }));
   }
 });

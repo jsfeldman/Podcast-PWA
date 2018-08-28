@@ -2197,6 +2197,23 @@ define("./service-worker.js",[],function () { 'use strict';
 	var domParser_2 = domParser.XMLSerializer;
 	var domParser_3 = domParser.DOMParser;
 
+	var titleCardHtml = ({
+	  title = "",
+	  description = "",
+	  coverImgSrc = "",
+	  link = ""
+	} = {}) => `
+<section class="title-card">
+  <img class="title-card__image" src="${coverImgSrc}" alt="${title}'s cover art" crossorigin="anonymous" />
+  <h2 class="title-card__heading">${title}</h2>
+  <a class="title-card__link" href="${link}">${link}</a>
+  <p class="title-card__description">${description}</p>
+  <form action="/subscribe" method="POST">
+    <button class="title-card__subscribeButton" type="submit">Subscribe</button>
+  </form>
+</section>
+`;
+
 	var titleCardCss = `
 .title-card {
   width: 20%;
@@ -2219,43 +2236,17 @@ define("./service-worker.js",[],function () { 'use strict';
 }
 `;
 
-	var titleCard = ({ title, description, coverImgSrc, link }) => `
-<style>
-  ${titleCardCss}
-</style>
-<section class="title-card">
-  <img class="title-card__image" src="${coverImgSrc}" alt="${title}'s cover art" crossorigin="anonymous" />
-  <h2 class="title-card__heading">${title}</h2>
-  <a class="title-card__link" href="${link}">${link}</a>
-  <p class="title-card__description">${description}</p>
-  <form action="/subscribe" method="POST">
-    <button class="title-card__subscribeButton" type="submit">Subscribe</button>
-  </form>
-</section>
-`;
-
 	var episodeListOpen = titleInfo => `
 <link href="/css/titleWithList.css" rel="stylesheet" />
 <div class="title-with-list">
-  ${titleCard(titleInfo)}
+  <style>
+    ${titleCardCss}
+  </style>
+  ${titleCardHtml(titleInfo)}
   <ul class="episode-list">
 `;
 
-	var episodeItem = `
-.episode-item {
-  margin-bottom: 16px;
-}
-.episode-item__title {
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-.episode-item__audio {
-  margin-top: 8px;
-  width: 100%;
-}
-`;
-
-	var episodeItem$1 = ({
+	var episodeItem = ({
 	  data,
 	  type,
 	  title = "",
@@ -2264,9 +2255,6 @@ define("./service-worker.js",[],function () { 'use strict';
 	  length = "",
 	  pubDate = ""
 	}) => `
-<style>
-  ${episodeItem}
-</style>
 <li class="episode-item">
   ${title !== "" ? `<h2 class="episode-item__title">${title}</h2>` : ""}
   <div class="episode-item__info">
@@ -2309,7 +2297,7 @@ define("./service-worker.js",[],function () { 'use strict';
 	    titleEnd = end;
 	  }
 	  const { items, end } = parseRssItems(resp);
-	  const itemsHTML = items.map(episodeItem$1).join("");
+	  const itemsHTML = items.map(episodeItem).join("");
 	  return { html: titleHTML + itemsHTML, end: Math.max(titleEnd, end) };
 	}
 
@@ -2410,15 +2398,11 @@ define("./service-worker.js",[],function () { 'use strict';
 	        function pushStream(stream) {
 	          // Get a lock on the stream
 	          var reader = stream.getReader();
-	          console.log("push stream start");
 	          return reader.read().then(function process(result) {
 	            if (result.done) {
-	              console.count("finished with data");
-	              console.log("finished enqueuing push stream");
 	              return;
 	            }
 	            controller.enqueue(result.value);
-	            console.count("more data");
 	            // Read more & process
 	            return reader.read().then(process);
 	          });
@@ -2430,12 +2414,7 @@ define("./service-worker.js",[],function () { 'use strict';
 	          .then(resp => pushStream(resp.body))
 	          .then(() => pageEndFetch)
 	          .then(resp => pushStream(resp.body))
-	          .then(
-	            () => (
-	              console.log("controller.close about to be called"),
-	              controller.close()
-	            )
-	          );
+	          .then(() => controller.close());
 	      }
 	    });
 
@@ -2444,8 +2423,6 @@ define("./service-worker.js",[],function () { 'use strict';
 	        headers: { "Content-Type": "text/html" }
 	      })
 	    );
-	  } else {
-	    event.respondWith(fetch(event.request));
 	  }
 	});
 
