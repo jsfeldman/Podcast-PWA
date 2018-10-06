@@ -7,11 +7,14 @@
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "node --experimental-modules server.mjs"
+    "start": "node --experimental-modules server.mjs",
+    "build-sw": "rollup -c"
   },
   "dependencies": {
     "koa": "^2.5.2",
-    "koa-static": "5.0.0"
+    "koa-static": "5.0.0",
+    "matchit": "1.0.6",
+    "xmldom-alpha": "0.1.27"
   },
   "engines": {
     "node": "8.x"
@@ -24,5 +27,11 @@
     "node",
     "glitch",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "rollup": "^0.65.0",
+    "rollup-plugin-commonjs": "^9.1.6",
+    "rollup-plugin-loadz0r": "^0.4.0",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  }
 }

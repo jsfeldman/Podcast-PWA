@@ -1,4 +1,4 @@
 export default () => `
-</head>
-<body>
-`
+  </ul>
+</div>
+`;

@@ -1,7 +1,9 @@
 .top-app-bar {
   position: fixed;
-  background-color: white;
+  top: 0;
+  background-color: #3a3939;
   width: 100%;
+  z-index: 1;
 }
 .top-app-bar__row {
   height: 56px;
@@ -13,8 +15,9 @@
 }
 .top-app-bar__navigation-icon {
   margin-right: 32px;
+  color: lightgrey;
 }
-.mdc-top-app-bar__title {
+.top-app-bar__title {
 }
 .top-app-bar__action-item + .top-app-bar__action-item {
   margin-left: 24px;
